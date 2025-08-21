@@ -1,0 +1,1 @@
+This repository contains solutions, notes, and implementations of Data Structures and Algorithms (DSA) in Java. It is designed to help with coding interview preparation, competitive programming, and building a strong problem-solving foundation.
