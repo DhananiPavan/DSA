@@ -13,8 +13,8 @@ class Solution {
                 int k=j+1;
                 int l=n.length-1;
                 while(k<l){
-                     long sum =(long)n[i]+ (long)n[j]+ (long)n[k]+ (long)n[l];
-                     if(sum==target){
+                     long sum =(long)n[i]+ (long)n[j]+ (long)n[k]+ (long)n[l];// use long to avoid
+                     if(sum==target){                                         // overflow error.
                         List<Integer> t=Arrays.asList(n[i], n[j], n[k],n[l]);
                         ans.add(t);
                         k++;
