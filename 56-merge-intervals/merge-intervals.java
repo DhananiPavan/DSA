@@ -21,7 +21,7 @@ class Solution {
         }
         // Convert List<List<Integer>> to int[][]
         int[][] res = new int[ans.size()][2];
-       for(int i = 0; i < ans.size(); i++) {
+         for(int i = 0; i < ans.size(); i++) {
                      res[i][0] = ans.get(i).get(0);
                      res[i][1] = ans.get(i).get(1);
             }
