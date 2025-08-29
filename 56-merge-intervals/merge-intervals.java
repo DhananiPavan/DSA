@@ -1,6 +1,6 @@
 class Solution {
     public int[][] merge(int[][] arr) {
-          int n = arr.length; // size of the array
+        int n = arr.length; // size of the array
         //sort the given intervals:
         Arrays.sort(arr, new Comparator<int[]>() {
             public int compare(int[] a, int[] b) {
