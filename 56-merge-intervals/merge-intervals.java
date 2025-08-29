@@ -25,10 +25,8 @@ class Solution {
                      res[i][0] = ans.get(i).get(0);
                      res[i][1] = ans.get(i).get(1);
             }
-return res;
-
-
-
         
+        return res;
+
     }
 }
