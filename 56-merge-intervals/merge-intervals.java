@@ -7,7 +7,7 @@ class Solution {
                 return a[0] - b[0];
             }
         });// it is ctr a anonymas class that implents the comparator interface ,it take 1st ele in ec row 
-        // take list 
+         // take list 
         List<List<Integer>> ans=new ArrayList();
 
         for(int i=0;i<n;i++){
