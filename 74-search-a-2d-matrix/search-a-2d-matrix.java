@@ -4,13 +4,8 @@ class Solution {
         int m = matrix[0].length;
 
         //apply binary search:
-        // formula to get rows=mid/nums of cols //col=mid%m;''
-
-
-
-
-        
-        int low = 0, high = n * m - 1;
+        // formula to get rows=mid/nums of cols //col=mid%m;
+          int low = 0, high = n * m - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
             int row = mid / m, col = mid % m;
