@@ -8,11 +8,13 @@ class Solution {
         for (int i = 0; i < s.length(); i++) {
             char c1 = s.charAt(i);
             char c2 = t.charAt(i);
+            //check the two maps its key has correct mapping are not
 
             if (mapST.containsKey(c1) && mapST.get(c1) != c2)
                 return false;
             if (mapTS.containsKey(c2) && mapTS.get(c2) != c1)
                 return false;
+            //its key value pair doesn't exit add key and value to maps 
 
             mapST.put(c1, c2);
             mapTS.put(c2, c1);
