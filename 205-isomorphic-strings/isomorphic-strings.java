@@ -1,25 +1,21 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if (s.length() != t.length()) return false;
-
-        Map<Character, Character> mapST = new HashMap<>();
-        Map<Character, Character> mapTS = new HashMap<>();
-
-        for (int i = 0; i < s.length(); i++) {
-            char c1 = s.charAt(i);
-            char c2 = t.charAt(i);
-            //check the two maps its key has correct mapping are not
-
-            if (mapST.containsKey(c1) && mapST.get(c1) != c2)
-                return false;
-            if (mapTS.containsKey(c2) && mapTS.get(c2) != c1)
-                return false;
-            //its key value pair doesn't exit add key and value to maps 
-
-            mapST.put(c1, c2);
-            mapTS.put(c2, c1);
-        }
-
-        return true;  
+         int[] m1 = new int[256], m2 = new int[256];
+  
+          // Get length of the strings
+          int n = s.length();
+  
+          // Loop through all characters in the strings
+          for (int i = 0; i < n; ++i) {
+              // Return false if mapping is inconsistent
+              if (m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
+  
+              // Update last seen index for both characters
+              m1[s.charAt(i)] = i + 1;
+              m2[t.charAt(i)] = i + 1;
+          }
+  
+          // Return true if all character mappings are consistent
+          return true; 
     }
 }
