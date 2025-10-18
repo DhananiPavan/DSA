@@ -4,7 +4,7 @@ class Solution {
         if (s.length() != goal.length()) return false;
 
         // Concatenate s with itself
-        String combined = s + s;
+        String combined = s+s;
 
         // Check if goal is a substring of combined
         return combined.contains(goal);
