@@ -1,59 +1,23 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-
         if (head == null || head.next == null) return head;
 
-        // count nodes
-        ListNode temp = head;
-        int n = 0;
-        while (temp != null) {
-            n++;
-            temp = temp.next;
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even; // store starting point of even list
+
+        // rearrange pointers
+        while (even != null && even.next != null) {
+            odd.next = even.next;     // link odd to next odd
+            odd = odd.next;           // move odd pointer
+
+            even.next = odd.next;     // link even to next even
+            even = even.next;         // move even pointer
         }
 
-        // again set pointer to head
-        temp = head;
+        // join odd list with even list
+        odd.next = evenHead;
 
-        // odd and even list heads
-        ListNode oddHead = null, oddTail = null;
-        ListNode evenHead = null, evenTail = null;
-
-        int i = 1; // node position
-
-        while (temp != null) {
-            if (i % 2 == 1) {           // odd position
-                if (oddHead == null) {
-                    oddHead = oddTail = temp;
-                } else {
-                    oddTail.next = temp;
-                    oddTail = oddTail.next;
-                }
-            } else {                    // even position
-                if (evenHead == null) {
-                    evenHead = evenTail = temp;
-                } else {
-                    evenTail.next = temp;
-                    evenTail = evenTail.next;
-                }
-            }
-            temp = temp.next;
-            i++;
-        }
-
-        // join odd and even lists
-        oddTail.next = evenHead;
-        evenTail.next = null;
-
-        return oddHead;
+        return head;
     }
 }
