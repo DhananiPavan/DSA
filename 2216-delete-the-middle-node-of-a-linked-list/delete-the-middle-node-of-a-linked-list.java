@@ -25,7 +25,7 @@ class Solution {
 
 
         }
-        temp.next=temp.next.next;
+        temp.next=slow.next;
         return head;
         
     }
