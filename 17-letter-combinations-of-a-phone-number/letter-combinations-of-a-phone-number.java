@@ -8,23 +8,24 @@ class Solution {
             "mno", "pqrs", "tuv", "wxyz"
         };
 
-        backtrack(0, digits, map, "", ans);
+        backtrack(0, digits, map, new StringBuilder(), ans);
         return ans;
     }
 
     void backtrack(int index, String digits, String[] map,
-                   String temp, List<String> ans) {
+                   StringBuilder temp, List<String> ans) {
 
         if (index == digits.length()) {
-            ans.add(temp);
+            ans.add(temp.toString());
             return;
         }
 
         String letters = map[digits.charAt(index) - '0'];
 
-        for (int i = 0; i < letters.length(); i++) {
-            backtrack(index + 1, digits, map,
-                      temp + letters.charAt(i), ans);
+        for (char ch : letters.toCharArray()) {
+            temp.append(ch);
+            backtrack(index + 1, digits, map, temp, ans);
+            temp.deleteCharAt(temp.length() - 1); // backtrack
         }
     }
 }
