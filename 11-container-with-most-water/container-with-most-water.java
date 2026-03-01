@@ -8,11 +8,11 @@ class Solution {
             int h=Math.min(height[l],height[r]);
             ans=Math.max(ans,w*h);
             if(height[l]<height[r]){
-                //use while to skip lesser height compare to min height of previous both
-                l++;
+              while(l<r && height[l]<=h)l++;
+                
             }
             else{
-                r--;
+                while(l<r && height[r]<=h)r--;
             }
         }
         return ans;
