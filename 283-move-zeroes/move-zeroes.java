@@ -18,12 +18,13 @@ class Solution {
           if(a[j]!=0){
             a[i]=a[j];
             
+           
             if(i!=j){
-            a[j]=0;}
-
-            i++;
-          } 
-          
+              a[j]=0;
+            }
+             i++;
+           
+          }
 
             
         }
