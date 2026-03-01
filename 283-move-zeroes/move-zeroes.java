@@ -5,14 +5,23 @@ class Solution {
            
             if(a[j]!=0){
 
-                a[i]=a[j];
-                i++;
+                a[i++]=a[j];
+                
             }
         }
         while(i<a.length){
             a[i]=0;
             i++;
         }
+         // if(a[j]!=0)
+            //    {
+            //     a[i]=a[j];
+            //        if(i!=j)
+            //          {
+            //           a[j]=0;
+            //          }
+            //     i++;
+            // }
 
        
         
