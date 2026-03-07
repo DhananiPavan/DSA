@@ -8,10 +8,8 @@ class Solution {
             break;
         }
      } 
-     if(ind==-1){
-        Arrays.sort(a);
-     }
-     else{
+    
+     if(ind>=0){
         for(int i=n-1;i>ind;i--){
             if(a[ind]<a[i]){
              int temp=a[i];
@@ -21,8 +19,9 @@ class Solution {
             }
         }
 
-        reverse(a,ind+1,n-1);
+       
      } 
+      reverse(a,ind+1,n-1);
 
   
         
