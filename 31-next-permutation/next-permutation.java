@@ -12,7 +12,7 @@ class Solution {
         Arrays.sort(a);
      }
      else{
-        for(int i=n-1;i>0;i--){
+        for(int i=n-1;i>ind;i--){
             if(a[ind]<a[i]){
              int temp=a[i];
              a[i] =a[ind];
