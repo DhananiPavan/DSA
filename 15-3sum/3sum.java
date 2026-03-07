@@ -11,13 +11,6 @@ class Solution {
             int r=nums.length-1;
             while(l<r){
                int sum=nums[i]+nums[l]+nums[r];
-                 
-                if(sum>0){
-                    r--;
-                }
-                if(sum<0){
-                    l++;
-                }
                 if(sum==0){
                     List<Integer> temp=new ArrayList<>();
                     temp.add(nums[i]);
@@ -29,7 +22,14 @@ class Solution {
                     
 
                    
+                } 
+                if(sum>0){
+                    r--;
                 }
+                if(sum<0){
+                    l++;
+                }
+                
                
                
                 
