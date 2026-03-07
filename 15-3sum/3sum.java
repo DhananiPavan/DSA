@@ -19,7 +19,9 @@ class Solution {
                     ans.add(temp);
                     l=l+1;
                     while( l<r && nums[l]==nums[l-1])l++;
-                    
+                    r=r-1;
+                    while( l<r && nums[r]==nums[r+1])r--;
+
 
                    
                 } 
