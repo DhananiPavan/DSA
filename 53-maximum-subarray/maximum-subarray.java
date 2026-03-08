@@ -3,11 +3,9 @@ class Solution {
      int max=a[0];
      int cur=0;
      for(int i=0;i<a.length;i++){
-        if(cur<0){
-            cur=0;
-        }
         cur=cur+a[i];
         max=Math.max(max,cur);
+        cur=(cur<0)?0:cur;
      } 
      return max;  
     }
