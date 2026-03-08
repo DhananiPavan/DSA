@@ -5,10 +5,11 @@ class Solution {
             if(min>a[i]){
                 min=a[i];
             }
-            else if(a[i]-min>max){
-                max=a[i]-min;
+            // else if(a[i]-min>max){
+            //     max=a[i]-min;
 
-            }
+            // }
+            max=Math.max(max,a[i]-min);
         }
         return max;
         
