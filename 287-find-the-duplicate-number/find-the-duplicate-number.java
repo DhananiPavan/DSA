@@ -14,3 +14,35 @@ class Solution {
         return slow;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 1. Move slow(1), fast(2)
+// 2. Find meeting point
+// 3. Reset slow
+// 4. Move both 1 step
+// 5. Meeting = duplicate
+
+
+
+
+// Starting from 0 or nums[0] both are fine
+// 👉 Because:
+
+// Index 0 eventually leads into the cycle
+// Duplicate guarantees a loop
+// ⚡ One-Line Memory
+
+// 👉 “Start anywhere → you will reach the cycle”
