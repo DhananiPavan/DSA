@@ -1,9 +1,11 @@
 class Solution {
     public int addDigits(int num) {
-        if (num == 0) return 0;
-        return 1+(num-1)%9;
+        
+if (num == 0) return 0;
+        return 1 + (num - 1) % 9;
     }
 }
+
 
 // dr(n)=1+(n−1)mod9;
 
