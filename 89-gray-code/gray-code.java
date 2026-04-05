@@ -1,0 +1,11 @@
+class Solution {
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList<>();
+        int totalNumbers = 1 << n; // 2^n
+        for (int i = 0; i < totalNumbers; i++) {
+            // Apply the formula: i XOR (i divided by 2)
+            result.add(i ^ (i >> 1));
+        }
+        return result;
+    }
+}
