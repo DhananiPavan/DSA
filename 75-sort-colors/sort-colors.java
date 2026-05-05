@@ -5,16 +5,16 @@ class Solution {
         int end=nums.length-1;
         int mid=0;
         while(mid<=end){
-            if(mid<=end && nums[mid]==0){
+            if(nums[mid]==0){
                 swap(nums,start,mid);
                 start++;
                 mid++;
             }
-           else if(mid<= end && nums[mid]==2){
+           else if(nums[mid]==2){
                  swap(nums,mid,end);
                  end--;
             }
-            if(mid<=end && nums[mid]==1){
+            else{
 
              mid++;
             }
