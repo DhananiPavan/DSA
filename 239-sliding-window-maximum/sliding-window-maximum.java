@@ -5,7 +5,7 @@ class Solution {
 
         Deque<Integer> dq = new LinkedList<>();
         int n = nums.length;
-        int[] ans = new int[n - k + 1];
+        int[] ans = new int[n - k +1];
         int i = 0;
 
         for (int r = 0; r < n; r++) {
