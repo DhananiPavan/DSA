@@ -7,7 +7,7 @@ class Solution {
        for(int i=0;i<nums.length;i++){
         prefix+=nums[i];
         int rem=prefix%k;
-        if(rem<0) rem+=k;
+        if(rem<0) rem+=k;//check for -ve if -4 come -4+5=1 the -4 = 1 remainder
         if(mpp.containsKey(rem)){
            count+=mpp.get(rem); 
            
