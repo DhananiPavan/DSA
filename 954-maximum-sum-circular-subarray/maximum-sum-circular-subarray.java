@@ -10,9 +10,7 @@ class Solution {
           cur=Math.max(cur+nums[i],nums[i]);
           max=Math.max(max,cur);
           total+=nums[i];
-          if(nums[i]>0){
-            t=true;
-          }
+          
        }
        cur=nums[0];
        for(int i=1;i<n;i++){
@@ -20,7 +18,7 @@ class Solution {
         min=Math.min(min,cur);
         
        }
-       if(t==false){
+       if(max<0){
         return max;
        }
        return  Math.max(max,total-min);
