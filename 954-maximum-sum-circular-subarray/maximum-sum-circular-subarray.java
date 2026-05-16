@@ -3,12 +3,12 @@ class Solution {
        int max=nums[0];
        int min=nums[0];
        int n=nums.length;
-       int cur1=nums[0];
-       int cur2=nums[0];
-       int total=nums[0];
+       int cur1=0;
+       int cur2=0;
+       int total=0;
       
        
-       for(int i=1;i<n;i++){
+       for(int i=0;i<n;i++){
         cur1=Math.max(cur1+nums[i],nums[i]);
         max=Math.max(max,cur1);
         total+=nums[i];
