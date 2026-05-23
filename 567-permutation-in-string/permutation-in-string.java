@@ -22,7 +22,7 @@ class Solution {
             }
 
             // compare arrays
-            if (matches(s1Count, windowCount)) {
+            if (Arrays.equals(s1Count, windowCount)) {
                 return true;
             }
         }
@@ -30,10 +30,10 @@ class Solution {
         return false;
     }
 
-    private boolean matches(int[] a, int[] b) {
-        for (int i = 0; i < 26; i++) {
-            if (a[i] != b[i]) return false;
-        }
-        return true;
-    }
+    // private boolean matches(int[] a, int[] b) {
+    //     for (int i = 0; i < 26; i++) {
+    //         if (a[i] != b[i]) return false;
+    //     }
+    //     return true;
+    // }
 }
