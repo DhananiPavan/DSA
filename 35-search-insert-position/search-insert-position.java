@@ -1,22 +1,20 @@
 class Solution {
-    
-   
-    public static int searchInsert(int [] arr, int x) {
-        int n = arr.length; // size of the array
-        int low = 0, high = n - 1;
-        int ans = n;
+    public int searchInsert(int[] nums, int target) {
+        
+        int l=0;
+        int r=nums.length-1;
+        while(l<=r){
+            int mid=l+(r-l)/2;
+            if(nums[mid]==target) return mid;
+            else if(nums[mid]>target){
+                r=mid-1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            // maybe an answer
-            if (arr[mid] >= x) {
-                ans = mid;
-                //look for smaller index on the left
-                high = mid - 1;
-            } else {
-                low = mid + 1; // look on the right
             }
+            else{
+                l=mid+1;
+            }
+
         }
-        return ans;
+        return r+1;
     }
 }
