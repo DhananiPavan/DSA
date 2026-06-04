@@ -3,31 +3,19 @@ class Solution {
 
         Stack<Integer> stack = new Stack<>();
 
-        for (int asteroid : asteroids) {
+        for (int a : asteroids) {
 
-            boolean destroyed = false;
-
-            while (!stack.isEmpty() &&
-                   asteroid < 0 &&
-                   stack.peek() > 0) {
-
-                if (stack.peek() < -asteroid) {
-                    stack.pop();
-                }
-                else if (stack.peek() == -asteroid) {
-                    stack.pop();
-                    destroyed = true;
-                    break;
-                }
-                else {
-                    destroyed = true;
-                    break;
-                }
-            }
-
-            if (!destroyed) {
-                stack.push(asteroid);
-            }
+           while(!stack.isEmpty() && a<0 &&stack.peek()>0&& stack.peek()< -a ){
+            stack.pop();
+           }
+           if(!stack.isEmpty() && a<0 && stack.peek()>0){
+             if(stack.peek()==-a){
+                stack.pop();
+             }
+           }
+           else{
+            stack.push(a);
+           }
         }
 
         int[] ans = new int[stack.size()];
