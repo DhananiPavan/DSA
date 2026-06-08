@@ -4,7 +4,7 @@ class Solution {
         int num=0;
         char op='+';
         for(int i=0;i<=s.length();i++){
-          char ch=(i==s.length())?'-':s.charAt(i);
+          char ch=(i==s.length())?0:s.charAt(i);
           if(Character.isDigit(ch)){
             num=num*10+(ch-'0');
           }  
