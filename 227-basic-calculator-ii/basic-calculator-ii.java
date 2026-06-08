@@ -9,17 +9,32 @@ class Solution {
                 num=num*10+(ch-'0');
             }
             else if(ch!=' '){
-                if(op=='+'){
-                    stack.push(num);
-                }
-                if(op=='-'){
-                    stack.push(-num);
-                }
-                if(op=='*'){
-                    stack.push(stack.pop()*num);
-                }
-                if(op=='/'){
-                    stack.push(stack.pop()/num);
+                // if(op=='+'){
+                //     stack.push(num);
+                // }
+                // if(op=='-'){
+                //     stack.push(-num);
+                // }
+                // if(op=='*'){
+                //     stack.push(stack.pop()*num);
+                // }
+                // if(op=='/'){
+                //     stack.push(stack.pop()/num);
+                // }
+                switch(op){
+                    case '+':
+                             stack.push(num);
+                             break;
+                    case '-':
+                             stack.push(-num);
+                             break;
+                    case '*':
+                             stack.push(stack.pop()*num);
+                             break;
+                    case '/':
+                             stack.push(stack.pop()/num);
+                             break;
+
                 }
                 num=0;
                 op=ch;
