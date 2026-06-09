@@ -9,12 +9,12 @@ class Solution {
             }
             else if(c=='['){
                 stack.push(num);
-                stack.push("[");
+                stack.push('[');
                 num=0;
             }
             else if(c==']'){
               StringBuilder s=new StringBuilder();
-              while(!stack.isEmpty() && !stack.peek().equals("[")){
+              while(!stack.isEmpty() && !stack.peek().equals('[')){
                 s.insert(0,stack.pop());
               }    
               stack.pop();
