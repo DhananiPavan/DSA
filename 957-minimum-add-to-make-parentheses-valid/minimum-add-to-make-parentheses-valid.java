@@ -7,9 +7,9 @@ class Solution {
             if (c == '(') {
                 open++;
             } else {
-                if (open > 0)
+                if (open > 0) {
                     open--;
-                else {
+                } else {
                     close++;
                 }
             }
