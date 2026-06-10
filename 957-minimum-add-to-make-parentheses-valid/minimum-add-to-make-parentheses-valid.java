@@ -7,10 +7,12 @@ class Solution {
         if(c=='('){
             open++;
         }
-        else if(c==')' && open>0)open--;
-       else{
-        close++;
-       }
+        else{
+            if(open>0)open--;
+            else{
+                close++;
+            }
+        }
        
        }
        return open+close; 
