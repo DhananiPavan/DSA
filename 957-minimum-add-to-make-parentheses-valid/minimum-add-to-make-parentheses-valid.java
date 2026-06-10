@@ -1,20 +1,21 @@
 class Solution {
     public int minAddToMakeValid(String s) {
+        int open = 0;   // unmatched '('
+        int moves = 0;  // insertions needed
 
-       int open =0;
-       int close=0;
-       for(Character c:s.toCharArray()){
-        if(c=='('){
-            open++;
-        }
-        else{
-            if(open>0)open--;
-            else{
-                close++;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                open++;
+            } else {
+                if (open > 0) {
+                    open--; // match with an existing '('
+                } else {
+                    moves++; // need to insert a '('
+                }
             }
         }
-       
-       }
-       return open+close; 
+
+        // Remaining open brackets need ')'
+        return moves + open;
     }
 }
