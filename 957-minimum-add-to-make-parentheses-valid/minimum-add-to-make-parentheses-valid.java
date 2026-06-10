@@ -18,6 +18,3 @@ class Solution {
        return open+close; 
     }
 }
-//if valid open and close found open will be 0 
-//other wise invalid open open++
-//invalid close close++;
