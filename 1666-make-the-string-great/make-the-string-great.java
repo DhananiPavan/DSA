@@ -2,13 +2,10 @@ class Solution {
     public String makeGood(String s) {
         Stack<Character> stack =new Stack<>();
         for(Character c:s.toCharArray()){
-            if(!stack.isEmpty() && Character.toLowerCase(c)==Character.toLowerCase(stack.peek())){
-                if(c!=stack.peek()){
-                    stack.pop();
-                }
-                else{
-                    stack.push(c);
-                }
+            if(!stack.isEmpty() && Character.toLowerCase(c)==Character.toLowerCase(stack.peek())&&c!=stack.peek()){
+               stack.pop();
+        
+                
             }
             else{
                 stack.push(c);
