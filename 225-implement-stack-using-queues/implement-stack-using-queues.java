@@ -1,22 +1,22 @@
 class MyStack {
-     
-    Deque<Integer> q; 
+    Queue<Integer>  q;
+
     public MyStack() {
-        q=new ArrayDeque<>();
+        q=new LinkedList<>();
     }
     
     public void push(int x) {
         q.add(x);
-        
-            for(int i =0;i<q.size()-1;i++){
-               q.add(q.poll()); 
-            }
-        
+        int size=q.size();
+        for(int i=0;i<size-1;i++){
+            q.add(q.poll());
+        }
         
     }
     
     public int pop() {
         return q.poll();
+        
     }
     
     public int top() {
@@ -24,7 +24,7 @@ class MyStack {
     }
     
     public boolean empty() {
-       return q.isEmpty(); 
+        return q.isEmpty();
     }
 }
 
