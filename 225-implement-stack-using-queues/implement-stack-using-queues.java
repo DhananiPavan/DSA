@@ -1,30 +1,30 @@
 class MyStack {
-     
-    Queue<Integer> q; 
+ Queue<Integer> q;
     public MyStack() {
-        q=new LinkedList<>();
+   q=new LinkedList<>();
     }
     
     public void push(int x) {
-        q.offer(x);
+      q.add(x);
         
-            for(int i =0;i<q.size()-1;i++){
-               q.offer(q.poll()); 
-            }
-        
-        
+        // Rotate the queue
+        for(int i = 0; i < q.size() - 1; i++){
+            q.add(q.remove());
+        }   
     }
     
     public int pop() {
-        return q.poll();
+        return q.remove();
+        
     }
     
     public int top() {
         return q.peek();
+        
     }
     
     public boolean empty() {
-       return q.isEmpty(); 
+        return q.isEmpty();
     }
 }
 
