@@ -1,18 +1,18 @@
 class MyStack {
-    Queue<Integer> q;
-
+     
+    Queue<Integer> q; 
     public MyStack() {
-        // Using ArrayDeque is often slightly faster than LinkedList in Java
-        q = new ArrayDeque<>(); 
+        q=new LinkedList<>();
     }
     
     public void push(int x) {
-        q.add(x);
-        int size = q.size();
-        // Rotate the queue so the newly added element is at the front
-        for (int i = 0; i < size - 1; i++) {
-            q.add(q.poll());
-        }
+        q.offer(x);
+        
+            for(int i =0;i<q.size()-1;i++){
+               q.offer(q.poll()); 
+            }
+        
+        
     }
     
     public int pop() {
@@ -24,6 +24,15 @@ class MyStack {
     }
     
     public boolean empty() {
-        return q.isEmpty();
+       return q.isEmpty(); 
     }
 }
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
