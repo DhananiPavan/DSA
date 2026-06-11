@@ -1,8 +1,8 @@
 class MyStack {
      
-    Queue<Integer> q; 
+    Deque<Integer> q; 
     public MyStack() {
-        q=new LinkedList<>();
+        q=new ArrayDeque<>();
     }
     
     public void push(int x) {
