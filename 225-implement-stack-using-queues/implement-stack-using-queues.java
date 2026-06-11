@@ -7,11 +7,11 @@ class MyStack {
     
     public void push(int x) {
         q.offer(x);
-        if(q.size()>1){
+        
             for(int i =0;i<q.size()-1;i++){
-               q.offer(q.poll());
+               q.offer(q.poll()); 
             }
-        }
+        
         
     }
     
