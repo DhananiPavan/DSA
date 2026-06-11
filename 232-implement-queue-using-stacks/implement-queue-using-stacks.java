@@ -1,41 +1,38 @@
-import java.util.Stack;
-
 class MyQueue {
 
-    Stack<Integer> stack;
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
 
     public MyQueue() {
-        stack = new Stack<>();
+        stack1=new Stack<>();
+        stack2=new Stack<>();
     }
-
-    // O(n)
+    
     public void push(int x) {
-        insertAtBottom(x);
+       stack1.push(x);
+        
     }
-
-    private void insertAtBottom(int x) {
-        if (stack.isEmpty()) {
-            stack.push(x);
-            return;
+    
+     public int pop() {
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
         }
-
-        int top = stack.pop();
-        insertAtBottom(x);
-        stack.push(top);
+        return stack2.pop();
     }
-
-    // O(1)
-    public int pop() {
-        return stack.pop();
-    }
-
-    // O(1)
+    
     public int peek() {
-        return stack.peek();
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.peek();
     }
-
+    
     public boolean empty() {
-        return stack.isEmpty();
+        return stack1.isEmpty() && stack2.isEmpty();
     }
 }
 
