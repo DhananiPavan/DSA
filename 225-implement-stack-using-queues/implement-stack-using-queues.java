@@ -6,10 +6,10 @@ class MyStack {
     }
     
     public void push(int x) {
-        q.offer(x);
+        q.add(x);
         
             for(int i =0;i<q.size()-1;i++){
-               q.offer(q.poll()); 
+               q.add(q.poll()); 
             }
         
         
