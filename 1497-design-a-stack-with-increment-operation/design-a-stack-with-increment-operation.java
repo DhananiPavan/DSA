@@ -28,7 +28,7 @@ class CustomStack {
         top--;
         int value= stack[top]+incre[top];
         if(top>0)incre[top-1]+=incre[top];
-        incre[top]=0;
+        // incre[top]=0;
         return value;
         
     }
