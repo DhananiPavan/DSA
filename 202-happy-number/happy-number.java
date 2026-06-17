@@ -1,20 +1,24 @@
 class Solution {
     public boolean isHappy(int n) {
-        java.util.HashSet<Integer> seen = new java.util.HashSet<>();
-        while (n != 1 && !seen.contains(n)) {
-            seen.add(n);
-            n = sumOfSquares(n);
+        // Base cases for single digits
+        if (n == 1 || n == 7) {
+            return true;
         }
-        return n == 1;
-    }
-
-    private int sumOfSquares(int n) {
+        if (n < 10) {
+            return false;
+        }
+        
         int sum = 0;
-        while (n > 0) {
-            int d = n % 10;
-            sum += d * d;
-            n /= 10;
+        int x = n;
+        
+        // Corrected loop to process all digits
+        while (x != 0) {
+            int b = x % 10;
+            sum += b * b; // Accumulate the sum of squares
+            x = x / 10;   // Divide by 10 to move to the next digit
         }
-        return sum;
+        
+        // Recursively call with the new sum
+        return isHappy(sum);
     }
 }
