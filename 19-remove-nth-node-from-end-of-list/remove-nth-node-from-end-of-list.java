@@ -25,7 +25,7 @@ class Solution {
             return slow;
         }
         
-        while(fst!=null && fst.next!=null){
+        while(fst.next!=null){
             slow=slow.next;
             fst=fst.next;
         }
