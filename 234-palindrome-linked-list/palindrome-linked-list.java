@@ -20,25 +20,25 @@ class Solution {
             slow = slow.next;
             fst = fst.next.next;
         }
-        ListNode newNode=null;
-        if(fst!=null){
-          newNode=reverse(slow.next);
-        
-        }
-        else{
-            newNode =reverse(slow);
-        }
-        ListNode left=head;
-        ListNode right=newNode;
-        while(right!=null){
-            if(left.val!=right.val){
+        ListNode newNode = null;
+        // if (fst != null) {
+        //     newNode = reverse(slow.next);
+
+        // } else {
+        //     newNode = reverse(slow);
+        // }
+        newNode =reverse(slow);
+        ListNode left = head;
+        ListNode right = newNode;
+        while (right != null) {
+            if (left.val != right.val) {
                 return false;
             }
-            left=left.next;
-            right=right.next;
+            left = left.next;
+            right = right.next;
         }
 
-     return true;
+        return true;
 
     }
 
