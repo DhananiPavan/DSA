@@ -10,51 +10,26 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) {
-            return true;  // It's a palindrome by definition
+        List<Integer> val=new ArrayList<>();
+        ListNode cur=head;
+        while(cur!=null){
+            val.add(cur.val);
+            cur=cur.next;
         }
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast.next!=null && fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-
+        if(val.size()<=1){
+            return true;
         }
-
-        ListNode newnode=reverse(slow.next);
-        ListNode first=head;
-        ListNode second=newnode;
-        while(second!=null){
-            if(first.val!=second.val){
-                reverse(newnode);
-                return false;
-
-            }
-            first=first.next;
-            second=second.next;
-
-        }
-         reverse(newnode);
-         return true;
-
-
-
-        
+        int len=val.size();
+        return solve(val,0,len-1);
     }
-    public ListNode reverse(ListNode head){
-          if (head == null || head.next == null) {
-            return head;  // No change is needed; return the current head
+    public boolean solve(List<Integer> val,int l,int r){
+        while(l<=r){
+            if(val.get(l)!=val.get(r)){
+                return false;
+            }
+            l++;
+            r--;
         }
-        ListNode prev = null;
-        ListNode curr = head;
-        
-        while (curr != null) {
-            ListNode next = curr.next; // store next node
-            curr.next = prev;          // reverse the link
-            prev = curr;               // move prev forward
-            curr = next;               // move curr forward
-        }
-        
-        return prev;
+        return true;
     }
 }
