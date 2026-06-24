@@ -10,26 +10,48 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        List<Integer> val=new ArrayList<>();
-        ListNode cur=head;
-        while(cur!=null){
-            val.add(cur.val);
-            cur=cur.next;
-        }
-        if(val.size()<=1){
+        if (head == null || head.next == null) {
             return true;
+
         }
-        int len=val.size();
-        return solve(val,0,len-1);
-    }
-    public boolean solve(List<Integer> val,int l,int r){
-        while(l<=r){
-            if(val.get(l)!=val.get(r)){
+        ListNode slow = head;
+        ListNode fst = head;
+        while (fst != null && fst.next != null) {
+            slow = slow.next;
+            fst = fst.next.next;
+        }
+        ListNode newNode=null;
+        if(fst!=null){
+          newNode=reverse(slow.next);
+        
+        }
+        else{
+            newNode =reverse(slow);
+        }
+        ListNode left=head;
+        ListNode right=newNode;
+        while(right!=null){
+            if(left.val!=right.val){
                 return false;
             }
-            l++;
-            r--;
+            left=left.next;
+            right=right.next;
         }
-        return true;
+
+     return true;
+
+    }
+
+    public ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
+        // 'prev' is now the head of the reversed second half!
     }
 }
