@@ -1,59 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-
-        if (head == null || left == right)
+        if(head==null || left==right){
             return head;
-
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-
-        ListNode temp = dummy;
-
-        // reach node before left
-        for (int i = 1; i < left; i++) {
-            temp = temp.next;
         }
 
-        ListNode prev = temp;
-        ListNode leftNode = temp.next;
-
-        // move to actual right node
-        temp = leftNode;
-
-        for (int i = left; i < right; i++) {
+        int i = 1;
+        ListNode temp = head;
+        ListNode prev=null;
+        while (i < left) {
+            prev=temp;
             temp = temp.next;
+            i++;
         }
+        
+        ListNode leftnode = temp;
+        while (i < right) {
+            temp = temp.next;
+            i++;
 
-        ListNode rightNode = temp.next;
-
-        // cut
+        }
+        ListNode rightnode = temp.next;
         temp.next = null;
+        ListNode newhead=reverse(leftnode,rightnode);
+        if(prev!=null){
+         prev.next=newhead;
+         return head;
+         }
 
-        // reverse and attach
-        prev.next = reverse(leftNode, rightNode);
 
-        return dummy.next;
+
+        return newhead;
+
+
     }
-
-    public ListNode reverse(ListNode head, ListNode right) {
-
-        ListNode prev = null;
-        ListNode cur = head;
-
-        while (cur != null) {
-
-            ListNode next = cur.next;
-
-            cur.next = prev;
-
-            prev = cur;
-
-            cur = next;
+    public ListNode reverse(ListNode head,ListNode right){
+        ListNode prev=null;
+        ListNode cur=head;
+        ListNode next=null;
+        while(cur!=null){
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
         }
-
-        // original head becomes tail
-        head.next = right;
-
+        head.next=right;
         return prev;
     }
+
 }
