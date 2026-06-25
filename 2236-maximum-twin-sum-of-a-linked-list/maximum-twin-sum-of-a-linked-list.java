@@ -1,43 +1,42 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public int pairSum(ListNode head) {
-    
-      ListNode slow=head;
-      ListNode fst=head;
-      ListNode left=head;
-      while(fst!=null){
-          slow=slow.next;
-          fst=fst.next.next;
-      }   
-      //reverse
-     ListNode right=reverse(slow);
-      int max=0;
-      while(right!=null){
-        max=Math.max(right.val+left.val,max);
-        right=right.next;
-        left=left.next;
-      }
-      return max;
-    }
-    public ListNode reverse(ListNode head){
-        ListNode prev=null;
-        ListNode next=null;
-        ListNode cur=head;
-        while(cur!=null){
-            next=cur.next;
-            cur.next=prev;
-            prev=cur;
-            cur=next;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // find middle
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return prev;
+
+        // reverse second half
+        ListNode prev = null;
+
+        while (slow != null) {
+            ListNode next = slow.next;
+
+            slow.next = prev;
+
+            prev = slow;
+
+            slow = next;
+        }
+
+        // compute twin sum
+        int max = 0;
+
+        while (prev != null) {
+
+            max = Math.max(
+                max,
+                head.val + prev.val
+            );
+
+            head = head.next;
+            prev = prev.next;
+        }
+
+        return max;
     }
 }
