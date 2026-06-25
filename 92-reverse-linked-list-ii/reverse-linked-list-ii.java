@@ -36,13 +36,11 @@ class Solution {
          prev.next=newhead;
          return head;
          }
-         else{
-            prev=newhead;
-         }
+         
 
 
 
-        return prev;
+        return newhead;
 
 
     }
