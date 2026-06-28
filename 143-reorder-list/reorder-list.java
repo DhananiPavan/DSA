@@ -1,39 +1,39 @@
-class Solution {
-    // Fast I/O block to clear LeetCode's wrapper overhead (Achieves 0ms / 100%)
-    static {
-        for (int i = 0; i < 500; i++) {
-            System.gc();
-        }
-    }
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
 
+class Solution {
     public void reorderList(ListNode head) {
-        if (head == null || head.next == null || head.next.next == null) {
+
+        if (head == null || head.next == null) {
             return;
         }
 
-        // 1. Find the middle of the list
+        // Step 1: Find middle
         ListNode slow = head;
         ListNode fast = head;
-        while (fast != null && fast.next != null) {
+
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // 2. Reverse the second half in-place
-        ListNode curr = slow.next;
-        slow.next = null; // Sever the link to split into two lists
-        ListNode prev = null;
+        // Step 2: Reverse second half
+        ListNode second = reverse(slow.next);
+        slow.next = null;
 
-        while (curr != null) {
-            ListNode nextNode = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = nextNode;
-        }
-
-        // 3. Merge alternatingly without any dummy node creations
+        // Step 3: Merge alternately
         ListNode first = head;
-        ListNode second = prev;
 
         while (second != null) {
             ListNode temp1 = first.next;
@@ -45,5 +45,20 @@ class Solution {
             first = temp1;
             second = temp2;
         }
+    }
+
+    private ListNode reverse(ListNode head) {
+
+        ListNode prev = null;
+
+        while (head != null) {
+            ListNode next = head.next;
+
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+
+        return prev;
     }
 }
