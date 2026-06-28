@@ -58,16 +58,16 @@ class Solution {
             temp = temp.next;
         }
 
-        while (newhead1 != null) {
+        if (newhead1 != null) {
             temp.next = newhead1;
-            temp = temp.next;
-            newhead1 = newhead1.next;
+            // temp = temp.next;
+            // newhead1 = newhead1.next;
         }
 
-        while (newhead2 != null) {
+        if (newhead2 != null) {
             temp.next = newhead2;
-            temp = temp.next;
-            newhead2 = newhead2.next;
+            // temp = temp.next;
+            // newhead2 = newhead2.next;
         }
     }
 }
