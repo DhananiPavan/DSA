@@ -1,47 +1,53 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) {
- *         this.val = val;
- *         this.next = next;
- *     }
- * }
- */
-
 class Solution {
-
     public int[] nextLargerNodes(ListNode head) {
-
-        List<Integer> list = new ArrayList<>();
-
-        // Convert Linked List → Array
-        while (head != null) {
-            list.add(head.val);
-            head = head.next;
+        // Step 1: Reverse the linked list to process from right to left
+        ListNode list = reverseList(head);
+        
+        // Count total nodes to initialize our array
+        int count = 0;
+        ListNode temp = list;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
         }
-
-        int n = list.size();
-
-        int[] ans = new int[n];
-
-        Stack<Integer> stack = new Stack<>();
-
-        for (int i = n - 1; i >= 0; i--) {
-
-            while (!stack.isEmpty() &&
-                   stack.peek() <= list.get(i)) {
-                stack.pop();
+        
+        int[] result = new int[count];
+        Stack<Integer> st = new Stack<>();
+        
+        // Step 2: Traverse the reversed list and fill the array from back to front
+        int index = count - 1;
+        while (list != null) {
+            // Maintain a strictly decreasing stack from top to bottom
+            while (!st.isEmpty() && st.peek() <= list.val) {
+                st.pop();
             }
-
-            ans[i] = stack.isEmpty() ? 0 : stack.peek();
-
-            stack.push(list.get(i));
+            
+            // If the stack is empty, there is no greater element to the right
+            if (st.isEmpty()) {
+                result[index] = 0;
+            } else {
+                result[index] = st.peek();
+            }
+            
+            // Push the current value onto the stack for upcoming elements
+            st.push(list.val);
+            
+            list = list.next;
+            index--;
         }
+        
+        return result;
+    }
 
-        return ans;
+    private ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode nextNode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        return prev;
     }
 }
