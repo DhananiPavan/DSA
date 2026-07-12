@@ -15,18 +15,23 @@
  */
 class Solution {
    
-    public int maxDepth(TreeNode root) {
-       
-      return height(root);
- 
-    }
-    private int height(TreeNode node) {
+    public int maxDepth(TreeNode node) {
      if(node==null){
         return 0;
      }
-     int l =height(node.left);
-     int r= height(node.right);
-     return 1+Math.max(l,r);
-        
+     int l =maxDepth(node.left);
+     int r= maxDepth(node.right);
+     return 1+Math.max(l,r);  
+    
+ 
     }
+    // private int height(TreeNode node) {
+    //  if(node==null){
+    //     return 0;
+    //  }
+    //  int l =height(node.left);
+    //  int r= height(node.right);
+    //  return 1+Math.max(l,r);
+        
+    // }
 }
