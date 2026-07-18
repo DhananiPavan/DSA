@@ -22,7 +22,7 @@ class Solution {
 
                 sum -= nums[left];
                 left++;
-            }
+             }
 
             if(right - left + 1 == k && map.size() == k){
                 maxSum = Math.max(maxSum, sum);
