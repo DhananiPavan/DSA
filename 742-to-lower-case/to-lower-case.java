@@ -1,5 +1,14 @@
 class Solution {
     public String toLowerCase(String s) {
-        return s.toLowerCase();
+        char charArr[] = s.toCharArray() ;
+
+        for(int i = 0 ; i < s.length() ; i ++){
+            if(charArr[i] >= 'A' && charArr[i] <= 'Z' ){
+                charArr[i] += 32 ;
+            }
+            
+        }
+
+        return new String(charArr) ;
     }
 }
