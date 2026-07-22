@@ -25,12 +25,11 @@ class Solution {
             Double sum=0.0;
             for (int i = 0; i < numofnodes; i++) {
                 
-                if (q.peek().left != null)
-                    q.offer(q.peek().left);
-                if (q.peek().right != null)
-                    q.offer(q.peek().right);
-                
-                sum+=q.poll().val;
+                TreeNode curr = q.poll(); // Poll once
+                sum += curr.val;
+
+                if (curr.left != null) q.offer(curr.left);
+                if (curr.right != null) q.offer(curr.right);
 
             }
             ans.add(sum/numofnodes);
