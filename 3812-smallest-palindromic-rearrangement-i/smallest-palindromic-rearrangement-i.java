@@ -1,43 +1,36 @@
 class Solution {
     public String smallestPalindrome(String s) {
+        int[] freq = new int[26];
 
-        char m = '\0';
-        int l = s.length();
-        if (l <= 2) {
-            return s;
-        }
-        if (l % 2 != 0) {
-            m = s.charAt((l / 2));
-        }
-        StringBuilder ans = new StringBuilder();
-        int i = 0;
+        // Count frequencies
         for (char c : s.toCharArray()) {
-            i++;
-            if (i <= (l / 2)) {
-                ans.append(c);
-            } else {
-                break;
+            freq[c - 'a']++;
+        }
+
+        StringBuilder half = new StringBuilder();
+        char middle = '\0';
+
+        // Build first half in lexicographical order
+        for (int i = 0; i < 26; i++) {
+            if ((freq[i] & 1) == 1) {
+                middle = (char) ('a' + i);
             }
 
-        }
-        char[] chars = ans.toString().toCharArray();
-        Arrays.sort(chars);
-
-        // 2. Build the first half
-        StringBuilder half = new StringBuilder(new String(chars));
-
-        // 3. Construct the result
-        StringBuilder finalans = new StringBuilder();
-        finalans.append(half);
-
-        if (m != '\0') {
-            finalans.append(m);
+            for (int j = 0; j < freq[i] / 2; j++) {
+                half.append((char) ('a' + i));
+            }
         }
 
-        // Append the reversed first half to complete the palindrome
-        finalans.append(new StringBuilder(half).reverse());
+        StringBuilder ans = new StringBuilder();
 
-        return finalans.toString();
+        ans.append(half);
 
+        if (middle != '\0') {
+            ans.append(middle);
+        }
+
+        ans.append(new StringBuilder(half).reverse());
+
+        return ans.toString();
     }
 }
