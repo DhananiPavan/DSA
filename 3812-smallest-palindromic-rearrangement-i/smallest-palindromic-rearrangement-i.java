@@ -1,25 +1,36 @@
 class Solution {
     public String smallestPalindrome(String s) {
-        int n = s.length();
-        int halfLen = n / 2;
+        int[] freq = new int[26];
 
-        // 1. Extract the first half of characters
-        char[] half = s.substring(0, halfLen).toCharArray();
-        
-        // 2. Sort them to get the lexicographically smallest arrangement
-        Arrays.sort(half);
-        
-        String firstHalf = new String(half);
-        StringBuilder sb = new StringBuilder(firstHalf);
-
-        // 3. If odd length, append the original middle character
-        if (n % 2 != 0) {
-            sb.append(s.charAt(halfLen));
+        // Count frequencies
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
         }
 
-        // 4. Mirror the first half
-        sb.append(new StringBuilder(firstHalf).reverse());
+        StringBuilder half = new StringBuilder();
+        char middle = '\0';
 
-        return sb.toString();
+        // Build first half in lexicographical order
+        for (int i = 0; i < 26; i++) {
+            if ((freq[i] & 1) == 1) {
+                middle = (char) ('a' + i);
+            }
+
+            for (int j = 0; j < freq[i] / 2; j++) {
+                half.append((char) ('a' + i));
+            }
+        }
+
+        StringBuilder ans = new StringBuilder();
+
+        ans.append(half);
+
+        if (middle != '\0') {
+            ans.append(middle);
+        }
+
+        ans.append(new StringBuilder(half).reverse());
+
+        return ans.toString();
     }
 }
