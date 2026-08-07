@@ -25,8 +25,9 @@ class Solution {
        Queue<Node> q=new LinkedList<>();
        q.offer(new Node(0,0,1));
         grid[0][0]=1;
-       int[][] dirs={{1, 1}, {1, 0}, {0, 1}, {1, -1},
-                {-1, 1}, {-1, 0}, {0, -1}, {-1, -1}};
+       int[][] dirs={{-1, -1}, {-1, 0}, {-1, 1},
+            { 0, -1},          { 0, 1},
+            { 1, -1}, { 1, 0}, { 1, 1}};
        while(!q.isEmpty()){
         Node cur= q.poll();
         int x= cur.first;
