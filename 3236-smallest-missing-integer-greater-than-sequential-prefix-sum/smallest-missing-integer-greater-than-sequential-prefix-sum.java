@@ -1,22 +1,25 @@
+import java.util.HashSet;
+import java.util.Set;
+
 class Solution {
     public int missingInteger(int[] nums) {
-        int n = nums.length;
-
-        int i = 1;
+        // 1. Calculate sum of the longest sequential prefix starting at index 0
         int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1] + 1) {
+                sum += nums[i];
+            } else {
+                break; // Sequential prefix ends
+            }
+        }
 
+        // 2. Insert all elements into a Set
         Set<Integer> set = new HashSet<>();
         for (int num : nums) {
             set.add(num);
         }
 
-        // Find sum of consecutive prefix
-        while (i < n && nums[i - 1] == nums[i] - 1) {
-            sum += nums[i];
-            i++;
-        }
-
-        // Find the smallest missing integer >= sum
+        // 3. Find the smallest missing integer >= sum
         while (set.contains(sum)) {
             sum++;
         }
