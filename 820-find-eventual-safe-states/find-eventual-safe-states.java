@@ -1,47 +1,65 @@
 class Solution {
-    Set<Integer> set = new HashSet<>();
+
+    List<Integer> ans = new ArrayList<>();
 
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        int m = graph.length;
-        int n = graph[0].length;
-        List<Integer> ans = new ArrayList<>();
-        boolean[] flags = new boolean[m];
-        for (int i = 0; i < m; i++) {
+
+        int n = graph.length;
+
+        // 0 = not visited
+        // 1 = currently in DFS path
+        // 2 = safe
+        // 3 = unsafe
+        int[] flags = new int[n];
+
+        for (int i = 0; i < n; i++) {
+
             if (dfs(i, graph, flags)) {
                 ans.add(i);
-                set.add(i);
-
             }
         }
 
         return ans;
-
     }
 
-    public boolean dfs(int node, int[][] g, boolean[] f) {
+    public boolean dfs(int node, int[][] g, int[] f) {
 
-        if (f[node] == true) {
+        // Currently in DFS path -> cycle
+        if (f[node] == 1) {
             return false;
         }
-        if(set.contains(node)){
+
+        // Already calculated
+        if (f[node] == 2) {
             return true;
         }
+
+        if (f[node] == 3) {
+            return false;
+        }
+
+        // Terminal node
         if (g[node].length == 0) {
-              set.add(node);
+            f[node] = 2;
             return true;
         }
-        f[node] = true;
-        // boolean p = true;
+
+        // Mark as currently visiting
+        f[node] = 1;
+
         for (int i = 0; i < g[node].length; i++) {
-            
+
             if (!dfs(g[node][i], g, f)) {
-                f[node]=false;
+
+                // This node leads to a cycle
+                f[node] = 3;
                 return false;
             }
-
         }
-        f[node]=false;
-        set.add(node);
+
+        // All neighbours are safe
+        f[node] = 2;
+
         return true;
     }
 }
