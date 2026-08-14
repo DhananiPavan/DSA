@@ -10,9 +10,9 @@ class Solution {
         
             while(mp.get(nums[e])>2){
                 mp.put(nums[s],mp.get(nums[s])-1);
-                if(mp.get(nums[s])==0){
-                    mp.remove(nums[s]);
-                }
+                // if(mp.get(nums[s])==0){
+                //     mp.remove(nums[s]);
+                // }
                 s++;
 
             }
