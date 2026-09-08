@@ -12,9 +12,9 @@ class Solution {
     //         ans.add(x);
     //     }
     //    }
-    for(int i=0;i<nums.length;i++){
+    for(int x:nums){
         //find index
-        int index = Math.abs(nums[i]) - 1;
+        int index = Math.abs(x) - 1;
         if(nums[index]<0){
             ans.add(Math.abs(index+1));
         }
