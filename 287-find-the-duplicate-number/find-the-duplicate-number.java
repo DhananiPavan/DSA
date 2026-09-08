@@ -1,48 +1,22 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        int slow=0;
-        int fast=0;
-        do{
-            slow=nums[slow];
-            fast=nums[nums[fast]];
-        }while(slow!=fast);
-        slow=0;
-        while(slow!=fast){
-            slow=nums[slow];
-            fast=nums[fast];
+        // Initialize pointers by taking the first step explicitly
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+
+        // Phase 1: Find the intersection point of the cycle
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
         }
+
+        // Phase 2: Find the entrance to the cycle (the duplicate number)
+        slow = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
         return slow;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 1. Move slow(1), fast(2)
-// 2. Find meeting point
-// 3. Reset slow
-// 4. Move both 1 step
-// 5. Meeting = duplicate
-
-
-
-
-// Starting from 0 or nums[0] both are fine
-// 👉 Because:
-
-// Index 0 eventually leads into the cycle
-// Duplicate guarantees a loop
-// ⚡ One-Line Memory
-
-// 👉 “Start anywhere → you will reach the cycle”
