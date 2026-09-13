@@ -33,7 +33,7 @@ class Solution {
     }
 
     public void dfs(int i, List<List<Integer>> adj, int[] comp, boolean[] v) {
-        comp[0]++; // Increment node count (n)
+        comp[0]++; 
         v[i] = true;
 
         for (int nei : adj.get(i)) {
