@@ -1,38 +1,33 @@
 class Solution {
     public int largestOverlap(int[][] img1, int[][] img2) {
-
         int n = img1.length;
-        int ans = 0;
+        int maxOverlap = 0;
 
-        HashMap<String, Integer> map = new HashMap<>();
+        // Iterate through all possible row and column translations
+        for (int rShift = -n + 1; rShift < n; rShift++) {
+            for (int cShift = -n + 1; cShift < n; cShift++) {
+                maxOverlap = Math.max(maxOverlap, countOverlap(img1, img2, rShift, cShift, n));
+            }
+        }
 
-        for (int r1 = 0; r1 < n; r1++) {
-            for (int c1 = 0; c1 < n; c1++) {
+        return maxOverlap;
+    }
 
-                if (img1[r1][c1] == 0)
-                    continue;
-
-                for (int r2 = 0; r2 < n; r2++) {
-                    for (int c2 = 0; c2 < n; c2++) {
-
-                        if (img2[r2][c2] == 0)
-                            continue;
-
-                        int dr = r2 - r1;
-                        int dc = c2 - c1;
-
-                        String key = dr + "," + dc;
-
-                        int count = map.getOrDefault(key, 0) + 1;
-
-                        map.put(key, count);
-
-                        ans = Math.max(ans, count);
+    private int countOverlap(int[][] img1, int[][] img2, int rShift, int cShift, int n) {
+        int count = 0;
+        for (int r = 0; r < n; r++) {
+            for (int c = 0; c < n; c++) {
+                int shiftedR = r + rShift;
+                int shiftedC = c + cShift;
+                
+                // Ensure shifted coordinates are valid indices in img1
+                if (shiftedR >= 0 && shiftedR < n && shiftedC >= 0 && shiftedC < n) {
+                    if (img1[shiftedR][shiftedC] == 1 && img2[r][c] == 1) {
+                        count++;
                     }
                 }
             }
         }
-
-        return ans;
+        return count;
     }
 }
