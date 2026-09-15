@@ -25,13 +25,16 @@ class Solution {
             }
             v[curnode] = true;
             sum += curw;
-            int i = 0;
+            int i = -1;
+
             for (int[] arr : points) {
-                if (i != curnode && !v[i]) {
-                    int val = Math.abs(points[curnode][0] - arr[0]) + Math.abs(points[curnode][1] - arr[1]);
-                    pq.add(new Pair(i, val));
-                }
-                i++; // Ensure i increments on every loop iteration
+                i++;
+                if (i == curnode || v[i])
+                    continue;
+
+                int val = Math.abs(points[curnode][0] - arr[0]) + Math.abs(points[curnode][1] - arr[1]);
+                pq.add(new Pair(i, val));
+
             }
         }
         return sum;
