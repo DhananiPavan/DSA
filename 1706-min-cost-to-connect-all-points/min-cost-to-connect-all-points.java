@@ -10,34 +10,48 @@ class Solution {
     }
 
     public int minCostConnectPoints(int[][] points) {
-        boolean[] v = new boolean[points.length];
-        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> Integer.compare(a.weight, b.weight));
+        int n = points.length;
+
+        boolean[] v = new boolean[n];
+
+        PriorityQueue<Pair> pq =
+            new PriorityQueue<>((a, b) -> Integer.compare(a.weight, b.weight));
+
+        pq.add(new Pair(0, 0));
+
         int sum = 0;
         int count = 0;
-        // Start with node 0 at cost 0
-        pq.add(new Pair(0, 0));
-        while (!pq.isEmpty()) {
+
+        while (!pq.isEmpty() && count < n) {
+
             Pair cur = pq.poll();
+
             int curnode = cur.node;
             int curw = cur.weight;
+
+            // Already connected
             if (v[curnode]) {
                 continue;
             }
+
+            // Add this point to MST
             v[curnode] = true;
             sum += curw;
-            int i = -1;
+            count++;
 
-            for (int[] arr : points) {
-                i++;
-                if (i == curnode || v[i])
-                    continue;
+            // Connect current point to every unvisited point
+            for (int i = 0; i < n; i++) {
 
-                int val = Math.abs(points[curnode][0] - arr[0]) + Math.abs(points[curnode][1] - arr[1]);
-                pq.add(new Pair(i, val));
+                if (!v[i]) {
+                    int distance =
+                        Math.abs(points[curnode][0] - points[i][0])
+                        + Math.abs(points[curnode][1] - points[i][1]);
 
+                    pq.add(new Pair(i, distance));
+                }
             }
         }
-        return sum;
 
+        return sum;
     }
 }
