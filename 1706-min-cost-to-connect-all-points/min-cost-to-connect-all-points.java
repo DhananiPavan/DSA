@@ -1,58 +1,39 @@
-class Solution {
-    public int minCostConnectPoints(int[][] points) {
-        List<int[]> edges = new ArrayList<>();
-        int n = points.length;  int cost = 0;
-        DisjointSet ds = new DisjointSet(n);
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                edges.add(new int[]{manDist(points[i], points[j]), i, j});
-            }
-        }
-        edges.sort(
-            (a,b) -> a[0] - b[0]
-        );
-        for(int[] edge: edges){
-            if(ds.findUP(edge[1]) != ds.findUP(edge[2])){
-                ds.unionBySize(edge[1], edge[2]);
-                cost += edge[0];
-            }
-        }
-        return cost;
+public class Solution {
+    public static int manhattan_distance(int[] p1, int[] p2) {
+        return Math.abs(p1[0] - p2[0]) + Math.abs(p1[1] - p2[1]);
     }
-    private int manDist(int[] fir, int[] sec){
-        int x = Math.abs(fir[0] - sec[0]);
-        int y = Math.abs(fir[1] - sec[1]);
-        return x+y;
-    }
-}
-class DisjointSet{
-    int[] parent;  int[] size;
-    DisjointSet(int node){
-        parent = new int[node];  size = new int[node];
-        for(int i=0; i<node; i++){
-            parent[i] = i;
-            size[i] = 1;
-        }
-    }
-    int findUP(int node){
-        if(parent[node] == node) return node;
-        //path compression
-        int ultiP = findUP(parent[node]);
-        parent[node] = ultiP;
-        return ultiP;
-    }
-    void unionBySize(int u, int v){
-        int ult_u = findUP(u);
-        int ult_v = findUP(v);
-        if(ult_u == ult_v) return;
 
-        if(size[ult_u] < size[ult_v]){
-            parent[ult_u] = ult_v;
-            size[ult_v] += size[ult_u];
+    public int minCostConnectPoints(int[][] points) {
+        int n = points.length;
+        boolean[] visited = new boolean[n];
+        HashMap<Integer, Integer> heap_dict = new HashMap<>();
+        heap_dict.put(0, 0);
+        
+        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        min_heap.add(new int[]{0, 0});
+        
+        int mst_weight = 0;
+        
+        while (!min_heap.isEmpty()) {
+            int[] top = min_heap.poll();
+            int w = top[0], u = top[1];
+            
+            if (visited[u] || heap_dict.getOrDefault(u, Integer.MAX_VALUE) < w) continue;
+            
+            visited[u] = true;
+            mst_weight += w;
+            
+            for (int v = 0; v < n; ++v) {
+                if (!visited[v]) {
+                    int new_distance = manhattan_distance(points[u], points[v]);
+                    if (new_distance < heap_dict.getOrDefault(v, Integer.MAX_VALUE)) {
+                        heap_dict.put(v, new_distance);
+                        min_heap.add(new int[]{new_distance, v});
+                    }
+                }
+            }
         }
-        else{
-            parent[ult_v] = ult_u;
-            size[ult_u] += size[ult_v];
-        }
+        
+        return mst_weight;
     }
 }
