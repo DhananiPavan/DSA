@@ -1,39 +1,44 @@
-public class Solution {
-    public static int manhattan_distance(int[] p1, int[] p2) {
-        return Math.abs(p1[0] - p2[0]) + Math.abs(p1[1] - p2[1]);
-    }
-
+class Solution {
     public int minCostConnectPoints(int[][] points) {
         int n = points.length;
+
         boolean[] visited = new boolean[n];
-        HashMap<Integer, Integer> heap_dict = new HashMap<>();
-        heap_dict.put(0, 0);
-        
-        PriorityQueue<int[]> min_heap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
-        min_heap.add(new int[]{0, 0});
-        
-        int mst_weight = 0;
-        
-        while (!min_heap.isEmpty()) {
-            int[] top = min_heap.poll();
-            int w = top[0], u = top[1];
-            
-            if (visited[u] || heap_dict.getOrDefault(u, Integer.MAX_VALUE) < w) continue;
-            
-            visited[u] = true;
-            mst_weight += w;
-            
-            for (int v = 0; v < n; ++v) {
-                if (!visited[v]) {
-                    int new_distance = manhattan_distance(points[u], points[v]);
-                    if (new_distance < heap_dict.getOrDefault(v, Integer.MAX_VALUE)) {
-                        heap_dict.put(v, new_distance);
-                        min_heap.add(new int[]{new_distance, v});
-                    }
+
+        PriorityQueue<int[]> pq =
+            new PriorityQueue<>((a, b) -> Integer.compare(a[1], b[1]));
+
+        pq.add(new int[]{0, 0});
+
+        int sum = 0;
+        int count = 0;
+
+        while (!pq.isEmpty() && count < n) {
+
+            int[] cur = pq.poll();
+
+            int node = cur[0];
+            int weight = cur[1];
+
+            if (visited[node]) {
+                continue;
+            }
+
+            visited[node] = true;
+            sum += weight;
+            count++;
+
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+
+                    int distance =
+                        Math.abs(points[node][0] - points[i][0])
+                        + Math.abs(points[node][1] - points[i][1]);
+
+                    pq.add(new int[]{i, distance});
                 }
             }
         }
-        
-        return mst_weight;
+
+        return sum;
     }
 }
