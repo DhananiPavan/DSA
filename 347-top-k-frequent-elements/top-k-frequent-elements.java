@@ -1,25 +1,66 @@
+// class Solution {
+//     public int[] topKFrequent(int[] nums, int k) {
+//          HashMap<Integer, Integer> map = new HashMap<>();
+
+//         // Count frequencies
+//         for (int num : nums) {
+//             map.put(num, map.getOrDefault(num, 0) + 1);
+//         }
+//         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+
+//         // Sort by frequency (descending)
+//         list.sort((a, b) -> b.getValue() - a.getValue());
+
+//         // Store top k elements
+//         int[] ans = new int[k];
+//         for (int i = 0; i < k; i++) {
+//             ans[i] = list.get(i).getKey();
+//         }
+//          return ans;
+//     }
+// }
+
+
+import java.util.*;
+
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-         HashMap<Integer, Integer> map = new HashMap<>();
-
-        // Count frequencies
+        // Step 1: Count element frequencies
+        Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
-        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
 
-        // Sort by frequency (descending)
-        list.sort((a, b) -> b.getValue() - a.getValue());
+        // Step 2: Initialize buckets where index = frequency
+        // Max frequency possible is nums.length
+        List<Integer>[] bucket = new List[nums.length + 1];
 
-        // Store top k elements
-        int[] ans = new int[k];
-        for (int i = 0; i < k; i++) {
-            ans[i] = list.get(i).getKey();
+        for (int key : map.keySet()) {
+            int frequency = map.get(key);
+            if (bucket[frequency] == null) {
+                bucket[frequency] = new ArrayList<>();
+            }
+            bucket[frequency].add(key);
         }
-         return ans;
+
+        // Step 3: Iterate backwards from highest frequency bucket to collect top k elements
+        int[] result = new int[k];
+        int index = 0;
+
+        for (int i = bucket.length - 1; i >= 0 && index < k; i--) {
+            if (bucket[i] != null) {
+                for (int num : bucket[i]) {
+                    result[index++] = num;
+                    if (index == k) {
+                        return result;
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 }
-
 
 
 // Yes, that's correct. ✅
