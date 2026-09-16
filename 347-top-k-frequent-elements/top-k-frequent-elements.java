@@ -19,3 +19,85 @@ class Solution {
          return ans;
     }
 }
+
+
+
+// Yes, that's correct. ✅
+
+// ```java
+// list.sort((a, b) -> a.getValue() - b.getValue());
+// ```
+
+// This sorts the list in **ascending order** (smallest frequency first).
+
+// ### Example
+
+// Suppose the list contains:
+
+// ```text
+// (1,3)
+// (2,1)
+// (3,2)
+// ```
+
+// Using
+
+// ```java
+// list.sort((a, b) -> a.getValue() - b.getValue());
+// ```
+
+// Result:
+
+// ```text
+// (2,1)
+// (3,2)
+// (1,3)
+// ```
+
+// ---
+
+// ### Descending Order
+
+// ```java
+// list.sort((a, b) -> b.getValue() - a.getValue());
+// ```
+
+// Result:
+
+// ```text
+// (1,3)
+// (3,2)
+// (2,1)
+// ```
+
+// ---
+
+// ### A Better Practice
+
+// Instead of subtracting values, use `Integer.compare()` because it avoids integer overflow.
+
+// **Ascending:**
+
+// ```java
+// list.sort((a, b) -> Integer.compare(a.getValue(), b.getValue()));
+// ```
+
+// **Descending:**
+
+// ```java
+// list.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+// ```
+
+// Or, using the `Comparator` utility (very common in interviews):
+
+// ```java
+// // Ascending
+// list.sort(Comparator.comparing(Map.Entry::getValue));
+//desending
+//list.sort(Comparator.comparing(Map.Entry::getValue).reversed());
+
+// // Descending
+// list.sort(Comparator.comparing(Map.Entry<Integer, Integer>::getValue).reversed());
+// ```
+
+// For LeetCode, `a.getValue() - b.getValue()` works because the frequencies are small, but `Integer.compare()` is the safer and more professional approach.
