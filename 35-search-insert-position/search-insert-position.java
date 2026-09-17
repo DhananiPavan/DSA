@@ -3,6 +3,7 @@ class Solution {
         
         int l=0;
         int r=nums.length-1;
+        int ans=-1;
         while(l<=r){
             int mid=l+(r-l)/2;
             if(nums[mid]==target) return mid;
@@ -15,6 +16,6 @@ class Solution {
             }
 
         }
-        return r+1;
+        return r+1;//l also we use
     }
 }
