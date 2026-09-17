@@ -14,7 +14,7 @@ class Solution {
             ls[f].add(key);
 
         }
-        for(int i=1;i<words.length;i++){
+        for(int i=1;i<ls.length;i++){
             if(ls[i]==null)continue;
             Collections.sort(ls[i]);
         }
