@@ -7,7 +7,7 @@ class Solution {
 
             if (nums[mid] > nums[h]) {
                 // min is in right half
-                l = mid + 1;
+                l = mid+1;
             } else {
                 // min is in left half (including mid)
                 h = mid;
