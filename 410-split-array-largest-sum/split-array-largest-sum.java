@@ -7,6 +7,7 @@ class Solution {
             low = Math.max(low, a[i]);
             high += a[i];
         }
+        int ans =0;
 
         //Apply binary search:
         while (low <= high) {
@@ -15,10 +16,11 @@ class Solution {
             if (partitions > k) {
                 low = mid + 1;
             } else {
+                ans=mid;
                 high = mid - 1;
             }
         }
-        return low;
+        return ans;
         
     }
     public static int countPartitions(int[] a, int maxSum) {
