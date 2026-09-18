@@ -16,7 +16,7 @@ class Solution {
                 low = mid + 1;
             }
         }
-        return low;
+        return high+1;
     }
      public static int findDays(int[] weights, int cap) {
         int days = 1; //First day.
