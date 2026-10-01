@@ -4,7 +4,9 @@ class Solution {
        for(Character c :s.toCharArray()){
         if(!stack.isEmpty()){
             char top=stack.peek();
-            if((top=='(' && c==')') ||(top=='{' && c=='}')||(top=='[' && c==']')){
+            if((top=='(' && c==')')||
+               (top=='{' && c=='}')||
+               (top=='[' && c==']')){
                 stack.pop();
             }
             else{
