@@ -31,9 +31,7 @@ class Solution {
             int d = curr[0];
             int node = curr[1];
 
-            if (d > dist[node]) {
-                continue;
-            }
+           
 
             for (int[] edge : graph[node]) {
 
